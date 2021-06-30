@@ -1,9 +1,9 @@
 {
-  "type": "mongodb",
+  "type": "mysql",
   "host": "localhost",
-  "port": 27017,
-  "username": "",
-  "password": "",
+  "port": 3306,
+  "username": "manish",
+  "password": "test@123",
   "database": "test",
   "entities": ["dist/**/*.entity{.ts,.js}"],
   "synchronize": true

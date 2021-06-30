@@ -9,7 +9,7 @@ import { EmployeeController } from './employee.controller'
   controllers: [EmployeeController],
   providers: [
     ...EmployeeProviders,
-    EmployeeService,
+    EmployeeService
   ],
 })
 export class EmployeeModule {}
