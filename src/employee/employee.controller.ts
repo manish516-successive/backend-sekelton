@@ -3,15 +3,17 @@ import { EmployeeService } from './employee.service';
 import { Employee } from './employee.entity';
 import { CreateEmployeeDto } from './create-employee.dto'
 import { ValidationPipe } from '../validation/validation.pipe'
-
+import { LoggingService } from "../logging/logging.service"
 
 
 @Controller('employee')
 export class EmployeeController {
-  constructor(private readonly employeeService: EmployeeService) {}
+  constructor(private readonly employeeService: EmployeeService,
+    private readonly loogingService: LoggingService) {}
 
   @Get()
   async getEmployees(): Promise<Employee[]> {
+    this.loogingService.log("Fetching Employee Data from controller");
     return await this.employeeService.findAll();
   }
 
