@@ -1,4 +1,5 @@
 import { Injectable, Inject } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Employee } from './employee.entity';
 import { CreateEmployeeDto } from './create-employee.dto'
@@ -8,7 +9,7 @@ import { LoggingService } from "../logging/logging.service"
 @Injectable()
 export class EmployeeService {
   constructor(
-    @Inject('Employee_REPOSITORY')
+    @InjectRepository(Employee)
     private EmployeeRepository: Repository<Employee>,
     private readonly loogingService: LoggingService
   ) {}

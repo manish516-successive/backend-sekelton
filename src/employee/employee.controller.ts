@@ -2,7 +2,7 @@ import { Controller, Get, Param, ParseIntPipe, Post, UsePipes, Body} from '@nest
 import { EmployeeService } from './employee.service';
 import { Employee } from './employee.entity';
 import { CreateEmployeeDto } from './create-employee.dto'
-import { ValidationPipe } from '../validation/validation.pipe'
+import { ValidationPipe } from '../common/pipes/validation.pipe'
 import { LoggingService } from "../logging/logging.service"
 
 

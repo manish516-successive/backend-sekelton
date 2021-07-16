@@ -4,8 +4,8 @@ import * as pinoHttp from "pino-http";
 import * as pino from "pino";
 import { v4 } from "uuid";
 import { setValue, middleware as ctxMiddleware } from "express-ctx";
-import { LoggingService } from "./logging.service";
-import { LOGGER_KEY } from "./constants";
+import { LoggingService } from "../logging/logging.service";
+import { LOGGER_KEY } from "../common/constants/logger.constants";
 
 @Global()
 @Module({ providers: [LoggingService], exports: [LoggingService] })
