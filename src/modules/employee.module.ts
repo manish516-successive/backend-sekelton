@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { EmployeeService } from '../employee/employee.service';
+import { EmployeeService } from '../employee/services/employee.service';
 import { EmployeeController } from '../employee/employee.controller'
-import { Employee } from '../employee/employee.entity';
+import { Employee } from '../employee/entities/employee.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 
@@ -9,6 +9,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   imports: [TypeOrmModule.forFeature([Employee])],
   controllers: [EmployeeController],
   providers: [ EmployeeService ],
-  exports: [TypeOrmModule]
+  exports: [TypeOrmModule, EmployeeService]
 })
 export class EmployeeModule {}

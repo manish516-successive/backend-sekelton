@@ -20,7 +20,9 @@ export class LoggingModule implements NestModule {
 
   configure(consumer: MiddlewareConsumer, ) {
    consumer.apply(ctxMiddleware, pinoHttp({
+      level: process.env.DEBUG_LOGS === 'true' ? 'debug' : 'info',
       logger: pino(),
+      autoLogging: process.env.AUTO_LOGGING === 'true',
       genReqId: function (req) { return v4() },
       serializers: {
         req(req) {

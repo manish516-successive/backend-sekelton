@@ -16,7 +16,6 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     const request = ctx.getRequest();
     let responseObject;
   
-
     ExceptionsWithHandlersDetails.forEach(function(ExceptionsWithHandlersDetail){
       if (exception instanceof ExceptionsWithHandlersDetail.type){
         responseObject = ExceptionsWithHandlersDetail.handler(exception);
