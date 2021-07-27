@@ -13,11 +13,11 @@ Backend Skeleton is based on NestJs Framework.
 
 ### Guidelines
 
-- Directory Structure
-- File Naming Format
+- [Directory Structure](#directory-structure)
+- [File Naming Format](#file-naming-format)
 
 ### Installation
- - Using NPM
+ - [Using NPM](#using-npm)
 
 
 ### Database Connectivity Using TypeORM
@@ -31,4 +31,10 @@ Backend Skeleton is based on NestJs Framework.
 ### Unified Structure For Rest Api Responses
 
 ### Unit and Integration Test cases
+
+### Directory Structure
+
+### File Naming Format
+
+### Using NPM
 
