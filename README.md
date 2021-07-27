@@ -4,7 +4,7 @@ Backend Skeleton is based on NestJs Framework.
 
 ### Features/Modules
 
-- [Database Connectivity Using TypeORM](#Database Connectivity Using TypeORM)
+- [Database Connectivity Using TypeORM](#database-connectivity-using-typeorm)
 - Logging each Request/Response with co-releation-id/sub-co-releation-id
 - Validation Using DTO (Data Transfer Object)
 - HTTP, Microservices, Database Health Checks
@@ -17,5 +17,5 @@ Backend Skeleton is based on NestJs Framework.
 - File Naming Format
 
 
-# Database Connectivity Using TypeORM
+### Database Connectivity Using TypeORM
 
