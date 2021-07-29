@@ -1,6 +1,6 @@
 import { LoggerService } from '@nestjs/common';
 import { getValue } from "express-ctx";
-import { LOGGER_KEY } from "../common/constants/logger.constants";
+import { LOGGER_KEY } from "./logger.constants";
 
 
 export class LoggingService implements LoggerService {

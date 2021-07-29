@@ -1,8 +1,8 @@
 import { Controller, Get, Param, ParseIntPipe, Post, UsePipes, Body} from '@nestjs/common';
 import { DepartmentService } from './services/department.service';
 import { Department } from './entities/department.entity';
-import { CreateDepartmentDto } from './create-department.dto'
-import { ValidationPipe } from '../common/pipes/validation.pipe'
+import { CreateDepartmentDto } from './dto/create-department.dto'
+import { ValidationPipe } from '../../common/pipes/validation.pipe'
 import { LoggingService } from "../logging/logging.service"
 
 

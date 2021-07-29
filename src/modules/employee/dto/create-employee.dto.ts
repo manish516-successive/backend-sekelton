@@ -6,6 +6,4 @@ export class CreateEmployeeDto {
 
   @IsString()
   designation: string;
-
-  department?: number;
 }

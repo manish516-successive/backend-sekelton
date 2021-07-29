@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Department } from '../entities/department.entity';
-import { CreateDepartmentDto } from '../create-department.dto'
+import { CreateDepartmentDto } from '../dto/create-department.dto'
 import { LoggingService } from "../../logging/logging.service"
 
 @Injectable()

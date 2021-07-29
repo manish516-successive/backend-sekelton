@@ -14,7 +14,7 @@ export interface Response<T> {
 }
 
 @Injectable()
-export class TransformInterceptor<T> implements NestInterceptor<T, Response<T>> {
+export class LoggerInterceptor<T> implements NestInterceptor<T, Response<T>> {
   intercept(
     context: ExecutionContext,
     next: CallHandler,
@@ -23,14 +23,9 @@ export class TransformInterceptor<T> implements NestInterceptor<T, Response<T>> 
       .handle()
       .pipe(
         map((data) => {
-          return {
-            status: "success",
-            message: typeof data === "object" ? data.message : "",
-            data: {
-              result: typeof data === "object" && !Array.isArray(data) ? data.result : data,
-              count : Array.isArray(data) ? data.length : undefined
-            }
-          }
+          let req = context.switchToHttp().getRequest();
+          req.res.header('X-Correlation-Id', req.headers["X-Correlation-Id"]);
+          return data;
         }),
       );
   }

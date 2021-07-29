@@ -18,12 +18,12 @@ export class GlobalExceptionFilter implements ExceptionFilter {
   
     ExceptionsWithHandlersDetails.forEach(function(ExceptionsWithHandlersDetail){
       if (exception instanceof ExceptionsWithHandlersDetail.type){
-        responseObject = ExceptionsWithHandlersDetail.handler(exception);
+        responseObject = ExceptionsWithHandlersDetail.handler(exception, request.method);
       }
     });
 
     if(!responseObject){
-      responseObject = GenericExceptionHandler(exception);
+      responseObject = GenericExceptionHandler(exception, request.method);
     }
 
     response.status(responseObject.statusCode).json(responseObject.json);

@@ -4,8 +4,13 @@ import * as pinoHttp from "pino-http";
 import * as pino from "pino";
 import { v4 } from "uuid";
 import { setValue, middleware as ctxMiddleware } from "express-ctx";
-import { LoggingService } from "../logging/logging.service";
-import { LOGGER_KEY } from "../common/constants/logger.constants";
+import { LoggingService } from "./logging.service";
+import { LOGGER_KEY } from "./logger.constants";
+import { LoggerMiddleware } from "./logger.middleware"
+import { APP_INTERCEPTOR } from '@nestjs/core';
+import { LoggerInterceptor } from './logger.interceptor'
+
+
 
 @Global()
 @Module({ providers: [LoggingService], exports: [LoggingService] })
@@ -13,7 +18,10 @@ export class LoggingModule implements NestModule {
   static forRoot(): DynamicModule {
     return {
       module: LoggingModule,
-      providers: [LoggingService],
+      providers: [LoggingService, {
+        provide: APP_INTERCEPTOR,
+        useClass: LoggerInterceptor,
+      }],
       exports: [LoggingService]
     };
   }
@@ -26,11 +34,15 @@ export class LoggingModule implements NestModule {
       genReqId: function (req) { return v4() },
       serializers: {
         req(req) {
+          req.headers = Object.assign(req.raw.headers, {
+            "X-Sub-Correlation-Id": v4(),
+            "X-Correlation-Id": req.raw.headers["X-Correlation-Id"] ? req.raw.headers["X-Correlation-Id"] : v4()
+          })
           req.body = req.raw.body;
           return req;
         },
       },
-    }), bindLoggerMiddleware).forRoutes('*');
+    }), bindLoggerMiddleware, LoggerMiddleware).forRoutes('*');
   }
 }
 
