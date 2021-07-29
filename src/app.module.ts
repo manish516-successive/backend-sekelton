@@ -3,11 +3,13 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { EmployeeModule } from './modules/employee/employee.module';
 import { DepartmentModule } from './modules/department/department.module';
-import { LoggingModule } from './modules/logging/logging.module';
+import { LoggerModule } from 'successive-nestjs-logger';
 import { HealthCheckModule } from './modules/healthcheck/healthcheck.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { databaseConfig } from './common/configs/database.config'
+import { loggerConfig } from './common/configs/logger.config'
+
 
 @Module({
   imports: [ConfigModule.forRoot() , 
@@ -16,7 +18,7 @@ import { databaseConfig } from './common/configs/database.config'
             ),
             EmployeeModule, 
             DepartmentModule,
-            LoggingModule.forRoot(), 
+            LoggerModule.forRoot(loggerConfig), 
             HealthCheckModule],
   controllers: [AppController],
   providers: [AppService],

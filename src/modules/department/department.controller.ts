@@ -3,17 +3,13 @@ import { DepartmentService } from './services/department.service';
 import { Department } from './entities/department.entity';
 import { CreateDepartmentDto } from './dto/create-department.dto'
 import { ValidationPipe } from '../../common/pipes/validation.pipe'
-import { LoggingService } from "../logging/logging.service"
-
 
 @Controller('department')
 export class DepartmentController {
-  constructor(private readonly departmentService: DepartmentService,
-    private readonly loogingService: LoggingService) {}
+  constructor(private readonly departmentService: DepartmentService) {}
 
   @Get()
   async getDepartments(): Promise<Department[]> {
-    this.loogingService.log("Fetching Department Data from controller");
     return await this.departmentService.findAll();
   }
 

@@ -2,20 +2,19 @@ import { Controller, Get, Param, ParseIntPipe, Post, UsePipes, Body} from '@nest
 import { EmployeeService } from './services/employee.service';
 import { Employee } from './entities/employee.entity';
 import { CreateEmployeeDto } from './dto/create-employee.dto'
-import { LoggingService } from "../logging/logging.service"
 import { InternalServerErrorException } from '@nestjs/common';
-
+import { LoggerService } from 'successive-nestjs-logger'
 
 
 @Controller('employee')
 export class EmployeeController {
   constructor(private readonly employeeService: EmployeeService,
-    private readonly loggingService: LoggingService) {}
+    private readonly loggerService: LoggerService) {}
 
   @Get()
   async getEmployees(): Promise<Employee[]> {
     try{
-      this.loggingService.debug("Fetching Employee Data from controller");
+      this.loggerService.debug("Fetching Employee Info");
       return await this.employeeService.findAll();
     }catch(err){
       throw new InternalServerErrorException(err);

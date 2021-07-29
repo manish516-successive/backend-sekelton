@@ -3,15 +3,12 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Department } from '../entities/department.entity';
 import { CreateDepartmentDto } from '../dto/create-department.dto'
-import { LoggingService } from "../../logging/logging.service"
 
 @Injectable()
 export class DepartmentService {
   constructor(
     @InjectRepository(Department)
-    private DepartmentRepository: Repository<Department>,
-    private readonly loogingService: LoggingService,
-  ) {}
+    private DepartmentRepository: Repository<Department>) {}
 
   async findAll(): Promise<Department[]> {
     return this.DepartmentRepository.find({ relations: ["employees"] });
