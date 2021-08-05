@@ -122,14 +122,60 @@ Backend Skeleton use NestJS Validation Module with DTO apporach to validate inco
          return this.departmentService.create(createDepartmentDto);
        }
        ```
- 
-
+Note: Backend Skeleton also exposed custom validation pipe, we can use it to override inbuild validation module.
 
 ### Health Checks
 
 ### Unified Structure For Rest Api Responses
 
+Backend Skeleton uses unified structure for all api responses for success and failures
+
+- Success : For Success it will return result in the following form.
+```
+{
+    "status": "success",
+    "message": "Data is fetched successfully",
+    "data": {
+        "result": [
+            {
+                "id": 109,
+                "name": "test",
+                "designation": "test",
+                "department": null
+            }
+        ],
+        "count": 1
+    }
+}
+```
+it will return count only if result is a array 
+
+- Failure : For Failure it will return result in the following form.
+
+```
+{
+    "status": "error",
+    "message": "BadRequestException",
+    "error": [
+        {
+            "entity": "name",
+            "message": [
+                "name must be a string"
+            ]
+        }
+    ]
+}
+```
+
 ### Unit and Integration Test cases
+
+Backend Skeleton uses Jest Framework to run unit and e2e test cases. Each service/controller consists of its corresponding test case file with a extension of .spec.ts. e2e test cases are under src/tests folder
+
+commands:
+
+- Unit cases: npm run test
+- Unit cases with coverage: npm run test:cov
+- e2e test cases: npm run test:e2e 
 
 ### Directory Structure
 
@@ -137,7 +183,31 @@ Backend Skeleton use NestJS Validation Module with DTO apporach to validate inco
 
 ### Config File
 
+Backend Skeleton use .env file for each environment i,e For Dev Env it used dev.env and for Test Env it use test.env file. 
+
+Sample .env file for development file
+
+```
+NODE_ENV=dev
+DB_TYPE=<DB_TYPE>
+DB_HOST=<DB_HOST>
+DB_PORT=<DB_PORT>
+DB_USERNAME=<DB_USERNAME>
+DB_PASSWORD=<DB_PASSWORD>
+DB_NAME=<DB_NAME>
+DB_SYNCHRONIZE=<DB_SYNCHRONIZE>
+DEBUG_LOGS=true
+```
+DEBUG_LOGS config is use to enable/disable debug logs and rest of the config is used by TypeOrm to connect with Database
+
 ### Using NPM
+
+Backend Skeleton uses npm as a package manager.Use following commands to start backend skeleton
+
+```
+npm install
+npm start
+```
 
 
 
