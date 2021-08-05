@@ -64,23 +64,65 @@ For Logging , Backend Skeleton use [successive-nestjs-logger](https://www.npmjs.
 
 Backend Skeleton use NestJS Validation Module with DTO apporach to validate incoming API payloads and Query Parameters.
 
-- Data Transfer Object: To validate API Request Payload , Backend Skeleton needs a DTO and then Backend Skeleton combines it with [class-valiator](https://github.com/typestack/class-validator). Sample DTO for Employee Class
-
-```
-import { IsString, IsInt } from 'class-validator';
-
-export class CreateEmployeeDto {
-  @IsString()
-  name: string;
-
-  @IsString()
-  designation: string;
-}
-
-```
-For this DTO, Backend Skeleton validates that each employee object must have 2 properties name and designation and Both the properties must be string.
+- Data Transfer Object: To validate API Request Payload , Backend Skeleton needs a DTO and then Backend Skeleton combines it with [class-valiator](https://github.com/typestack/class-validator). 
 
 - NestJs Validation module : Backend Skeleton used NestJs validation to validate DTO. Please refer [validation module](https://docs.nestjs.com/pipes) for information
+
+  #### How to Use validation Module
+  
+  - Define a DTO class. Sample DTO Class
+    ```
+    import { IsString, IsInt } from 'class-validator';
+
+    export class CreateEmployeeDto {
+      @IsString()
+      name: string;
+
+      @IsString()
+      designation: string;
+    }
+
+    ```
+    For this DTO, Backend Skeleton validates that each employee object must have 2 properties name and designation and Both the properties must be string.
+
+  - Associate DTO with a api request in the controller
+    ```
+    @Post()
+    async saveEmployee(@Body() createEmployeeDto: CreateEmployeeDto): Promise<{ message: string; result: Employee; }> {
+      try{
+        const employee = await this.employeeService.create(createEmployeeDto);
+        return {
+          message: "Employee Info saved successfully",
+          result: employee
+        };    
+      }catch(err){
+        throw new InternalServerErrorException(err);
+      }
+    }
+    ```
+   - Register NestJs Validation Module. In Nest Js we can register Validation Module either globally or locally
+     - Globally in the main.ts file
+       ```
+       import { NestFactory } from '@nestjs/core';
+       import { AppModule } from './app.module';
+       import { ValidationPipe } from '@nestjs/common';
+
+       async function bootstrap() {
+         const app = await NestFactory.create(AppModule, { logger: false });
+         app.useGlobalPipes(new ValidationPipe({transform: true)}));
+         await app.listen(3000);
+       }
+       bootstrap();
+
+       ```
+     - Locally in the controller file
+       ```
+       @Post()
+       async saveDepartment(@Body(new ValidationPipe()) createDepartmentDto: CreateDepartmentDto): Promise<any> {
+         return this.departmentService.create(createDepartmentDto);
+       }
+       ```
+ 
 
 
 ### Health Checks
