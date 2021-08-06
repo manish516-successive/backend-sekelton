@@ -126,6 +126,28 @@ Note: Backend Skeleton also exposed custom validation pipe, we can use it to ove
 
 ### Health Checks
 
+Backend skeleton exposes various API for health check using  nestjs healthcheck termus . These APIs can check the health of HTTP service, database, micro service running over tcp, rabbitmq and heap memory. Below are the list of Health Check APIS
+
+- GET /health/http?url=https://example.com
+- GET /health/database
+- GET /health/microservice/tcp?host=localhost&port=1113
+- GET /health/microservice/rabbitmq?url=amqp://localhost:5672
+- GET /health/memory?heapsize=102334
+
+Above APIS will return status as up if service is running otherwise it will return as down
+
+```
+{
+    "status": "success",
+    "data": {
+        "result": {
+            "status": "up"
+        }
+    }
+}
+
+```
+
 ### Unified Structure For Rest Api Responses
 
 Backend Skeleton uses unified structure for all api responses for success and failures
@@ -179,7 +201,49 @@ commands:
 
 ### Directory Structure
 
+```
+
+.
+├── app.controller.spec.ts
+├── app.controller.ts
+├── app.module.ts
+├── app.service.spec.ts
+├── app.service.ts
+├── common
+│   ├── configs
+│   │   ├── database.config.ts
+│   │   └── logger.config.ts
+│   ├── constants
+│   │   └── exception-handlers.constants.ts
+│   ├── filters
+│   │   └── exception.filter.ts
+│   ├── interceptors
+│   │   └── transform.interceptor.ts
+│   ├── interfaces
+│   │   ├── db.interface.ts
+│   │   └── logger.interface.ts
+│   ├── pipes
+│   │   └── validation.pipe.ts
+│   └── utils
+│       └── exception.util.ts
+├── main.ts
+└── modules
+    ├── department
+       ├── department.controller.ts
+       ├── department.module.ts
+       ├── dto
+       │   └── create-department.dto.ts
+       ├── entities
+       │   └── department.entity.ts
+       └── services
+          └── department.service.ts
+   
+```
+Backend Skeleton uses above directory structure. Module folder consists of each module like department and its corresponding files (controller/Service/enitity/module/dto) and common folder consists of files that are common to whole backend skeleton with its corresponding folder name Example config folder inside common folder must consists config files that are common to whole skeleton/
+
 ### File Naming Format
+
+Skeleton uses the name with a hyphen for a composed name, followed by a dot and the name of the decorator or object to which it corresponds.Example,for controller name will department.controller.ts, For Service name will be department.service.ts , For middleware name will authentication.middleware.ts and so on. 
 
 ### Config File
 
