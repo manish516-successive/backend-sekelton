@@ -1,11 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, ObjectIdColumn,ObjectID, BaseEntity } from 'typeorm';
 import { Department } from "../../department/entities/department.entity";
 
 
 @Entity()
-export class Employee {
-  @PrimaryGeneratedColumn()
-  id: number;
+export class Employee extends BaseEntity {
+  @ObjectIdColumn()
+  _id: ObjectID
 
   @Column()
   name: string;
@@ -13,6 +13,6 @@ export class Employee {
   @Column()
   designation: string;
 
-  @ManyToOne(() => Department, department => department.employees)
-  department: Department;
+  @ObjectIdColumn()
+  departmentId: ObjectID
 }

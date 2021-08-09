@@ -8,7 +8,8 @@ import { CreateDepartmentDto } from '../dto/create-department.dto'
 export class DepartmentService {
   constructor(
     @InjectRepository(Department)
-    private DepartmentRepository: Repository<Department>) {}
+    private DepartmentRepository: Repository<Department>
+  ) {}
 
   async findAll(): Promise<Department[]> {
     return this.DepartmentRepository.find({ relations: ["employees"] });
@@ -16,6 +17,12 @@ export class DepartmentService {
 
   async findOne(id: number): Promise<Department> {
     return this.DepartmentRepository.findOne(id);
+  }
+
+  async findWhere(query): Promise<Department[]> {
+    return this.DepartmentRepository.find({
+      where: query
+    });
   }
 
   async create(department: CreateDepartmentDto): Promise<any> {

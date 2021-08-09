@@ -27,7 +27,8 @@ export class TransformInterceptor<T> implements NestInterceptor<T, Response<T>> 
             status: "success",
             message: typeof data === "object" ? data.message : "",
             data: {
-              result: typeof data === "object" && !Array.isArray(data) ? data.result : data,
+              result: typeof data === "object" && !Array.isArray(data) ? 
+               data.result ? data.result : data : data,
               count : Array.isArray(data) ? data.length : undefined
             }
           }

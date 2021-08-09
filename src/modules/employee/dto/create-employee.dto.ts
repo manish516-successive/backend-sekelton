@@ -1,4 +1,6 @@
 import { IsString, IsInt } from 'class-validator';
+import { ObjectID } from 'typeorm';
+
 
 export class CreateEmployeeDto {
   @IsString()
@@ -6,4 +8,6 @@ export class CreateEmployeeDto {
 
   @IsString()
   designation: string;
+
+  departmentName?: string
 }

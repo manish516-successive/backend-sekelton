@@ -20,6 +20,6 @@ export class DepartmentController {
 
   @Post()
   async saveDepartment(@Body(new ValidationPipe()) createDepartmentDto: CreateDepartmentDto): Promise<any> {
-    return this.departmentService.create(createDepartmentDto);
+    return await this.departmentService.create(createDepartmentDto);
   }
 }
