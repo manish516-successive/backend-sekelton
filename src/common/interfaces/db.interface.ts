@@ -1,4 +1,4 @@
-export interface IDatabaseConfigAttributes {
+export interface DatabaseInterface {
 	type: any,
    	host: string;
    	port: number | string,

@@ -1,15 +1,15 @@
 import {
-  ExceptionFilter,
+  ExceptionFilter as NestJsExceptionFilter,
   Catch,
   ArgumentsHost,
   HttpException,
   BadRequestException,
   HttpStatus,
 } from '@nestjs/common';
-import { ExceptionsWithHandlersDetails, GenericExceptionHandler } from "../constants/exception.handlers.constants"
+import { ExceptionsWithHandlersDetails, GenericExceptionHandler } from "../constants/exception-handlers.constants"
 
 @Catch()
-export class GlobalExceptionFilter implements ExceptionFilter {
+export class ExceptionFilter implements NestJsExceptionFilter {
   catch(exception: any, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse();

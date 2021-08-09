@@ -116,7 +116,7 @@ export class HealthCheckController {
         async () => this.memory.checkHeap('memory_heap', queryParams.heap),
       ]);
       return {
-        result: healthCheck.info.memory
+        result: healthCheck.info.memory_heap
       }
     }catch(err){
       return {

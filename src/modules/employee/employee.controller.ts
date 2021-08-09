@@ -14,7 +14,9 @@ export class EmployeeController {
   @Get()
   async getEmployees(): Promise<Employee[]> {
     try{
-      this.loggerService.debug("Fetching Employee Info");
+      this.loggerService.debug("This is debug log");
+      this.loggerService.log("This is information log");
+      this.loggerService.warn("This is warning log");
       return await this.employeeService.findAll();
     }catch(err){
       throw new InternalServerErrorException(err);

@@ -12,7 +12,7 @@ type ExceptionType =
   | NotFoundException
   | InternalServerErrorException
 
-export class ExceptionHandlers {
+export class ExceptionUtil {
 	badRequestExceptionFormat(exception: BadRequestException, method: string) : object{
 		let errors = [];
 		let responseObject : ExceptionResponseObject;
