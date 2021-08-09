@@ -23,7 +23,7 @@ Backend Skeleton is based on NestJs Framework.
 
 ### Database Connectivity Using TypeORM
 
-This Backend Skeleton uses Typeorm For Database Connectivity and Database operation.TypeOrm can connects with multiple databases like mysql, posgresql and mongodb.For MongoDB,  Please refer [mongo-db-connectivity](https://github.com/manish516-successive/backend-skeleton/tree/mongo-db-connectivity) branch
+This Backend Skeleton uses Typeorm For Database Connectivity and Database operation.TypeOrm can connects with multiple databases like mysql, posgresql and mongodb.For MongoDB with typeorm,  Please refer [mongo-db-connectivity](https://github.com/manish516-successive/backend-skeleton/tree/mongo-db-connectivity) branch
 
 - Connection: For Connection with DB, Backend Skeleton use .env files. Please refer [Config File](#config-file) to know how to define Database credentials
 - Enitity : TypeORM supports the repository design pattern, so each entity/database tables has its own repository i.e for employee table, it needs [employee repository](https://github.com/manish516-successive/backend-skeleton/blob/main/src/modules/employee/entities/employee.entity.ts). For more information , please refer this [link](https://typeorm.io/#/entities)
