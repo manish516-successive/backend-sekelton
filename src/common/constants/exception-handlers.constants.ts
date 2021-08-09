@@ -1,5 +1,5 @@
  import { BadRequestException, NotFoundException, InternalServerErrorException } from '@nestjs/common';
-import { ExceptionUtil } from '../utils/exception.utils'
+import { ExceptionUtil } from '../utils/exception.util'
 
 export const ExceptionsWithHandlersDetails = [{
 	type: BadRequestException,
