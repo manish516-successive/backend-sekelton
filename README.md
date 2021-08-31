@@ -92,4 +92,18 @@ async findAll(): Promise<any[]> {
     ]).toArray();
   }
 ```
+### Config change
 
+Backend Skeleton use .env file for each environment i,e For Dev Env it used dev.env and for Test Env it use test.env file. 
+
+Sample .env file for development file
+
+```
+NODE_ENV=dev
+DB_TYPE=<DB_TYPE>
+DB_HOST=<DB_HOST>
+DB_PORT=<DB_PORT>
+DB_USERNAME=<DB_USERNAME>
+DB_PASSWORD=<DB_PASSWORD>
+DB_NAME=<DB_NAME>
+```
