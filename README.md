@@ -11,7 +11,7 @@ Typeorm can also used to connect with mongodb
 - Connection: For Connection with Mongodb, Backend Skeleton use .env files. Please refer [Config Change](#config-change) to know how to define Database credentials for mongodb
 - Entity: Defining entities and columns is almost the same as in relational databases, the main difference is that we must use @ObjectIdColumn instead of @PrimaryColumn or @PrimaryGeneratedColumn
 - Service: Backend Skeleton interacts with enities though services i.e [employee service](https://github.com/manish516-successive/backend-skeleton/blob/typeorm-with-mongodb/src/modules/employee/services/employee.service.ts) interacts with [employee repository](https://github.com/manish516-successive/backend-skeleton/blob/typeorm-with-mongodb/src/modules/employee/entities/employee.entity.ts)
-- Releationship: TypeOrm does not any inbuild support for releationship for mongodb, but backend-skeleton can implement reference based releationship by defining objectId between entities. For Following Database structure
+- Relationship: TypeOrm does not any inbuild support for relationship for mongodb, but backend-skeleton can implement reference based relationship by defining objectId between entities. For Following Database structure
 
 ```
 Table employee as E {
